@@ -1,0 +1,202 @@
+.profile {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  header {
+    position: relative;
+    height: 25vh;
+    width: 100%;
+    background-image: url('../assets/_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    span {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      background-color: red;
+      padding: 0.4rem 1rem;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  .profileContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    padding: 0 5%;
+    z-index: 1;
+
+    .uploading {
+      color: red;
+      text-align: center;
+    }
+
+    .left {
+      width: 30%;
+      height: 80%;
+      background-color: #f4f5f5;
+      margin-top: -5rem;
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+      overflow-y: scroll;
+
+      .img {
+        height: 35%;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .text {
+        padding: 0.5rem;
+        .input,
+        select {
+          width: 100%;
+          margin-bottom: 0.4rem;
+          padding: 0.3rem;
+          background-color: #fffafa;
+          outline: none;
+          border: 0;
+        }
+
+        .control {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .edit {
+            background-color: #333;
+            color: white;
+            padding: 0.4rem 0.6rem;
+            outline: none;
+            border: 0;
+            cursor: pointer;
+          }
+          .deleteBtn {
+            @extend .edit;
+            background-color: red;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 70%;
+      height: 100%;
+
+      h1 {
+        margin: 2rem 0;
+      }
+
+      .event {
+        height: max-content;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30% 60%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: #fffafa;
+        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+
+        .img {
+          height: 100%;
+          width: 100%;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .text {
+          h2 {
+            color: red;
+          }
+          p {
+            margin: 0.3rem 0;
+          }
+          span {
+            font-weight: bold;
+          }
+          .register {
+            background-color: #333;
+            color: white;
+            padding: 0.4rem 0.6rem;
+            outline: none;
+            border: 0;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .delete {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    z-index: 3;
+
+    .deleteContent {
+      height: 300px;
+      max-width: 80%;
+      min-width: 300px;
+      background-color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        width: 80%;
+        margin: 0.4rem auto;
+      }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 0.2rem;
+        .del {
+          padding: 0.6rem 1rem;
+          background-color: red;
+          color: white;
+          outline: none;
+          border: 0;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.89;
+          }
+          &.cancel {
+            background-color: #333;
+          }
+        }
+      }
+    }
+  }
+  .show {
+    display: flex;
+  }
+}

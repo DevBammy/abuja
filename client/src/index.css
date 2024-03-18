@@ -1,0 +1,33 @@
+:root {
+  --font: 'Poppins', sans-serif;
+  --regular: 400;
+  --medium: 500;
+  --bold: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: var(--regular);
+  font-size: 14px;
+  line-height: 1.2;
+  background-color: #fffff0;
+  overflow-y: hidden;
+}
+
+h1 {
+  font-weight: var(--bold);
+  font-size: 3rem;
+  color: #333;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+p {
+  margin: 0.5rem;
+}
