@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Pix from '../assets/bg.jpg';
 import '../styles/auth.scss';
-import Oauth from '../components/OAuth';
+// import Oauth from '../components/OAuth';
 
 const Signup = () => {
   const [formData, setFormData] = useState();
@@ -96,7 +96,7 @@ const Signup = () => {
               </Link>
             </p>
 
-            <Oauth />
+            {/* <Oauth /> */}
           </div>
         </div>
       </div>

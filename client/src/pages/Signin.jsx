@@ -11,11 +11,13 @@ import {
 import toast from 'react-hot-toast';
 import Pix from '../assets/bg.jpg';
 import '../styles/auth.scss';
-import Oauth from '../components/OAuth';
+// import Oauth from '../components/OAuth';
 
 const Signin = () => {
   const [formData, setFormData] = useState({});
   const { isLoading, error } = useSelector((state) => state.user);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState('');
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -41,14 +43,14 @@ const Signin = () => {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailed(data.message));
-        toast.error(data.message);
+        // toast.error(data.message);
         return;
       }
-      dispatch(signInSuccess(data.user));
+      dispatch(signInSuccess(data));
       nav('/profile');
     } catch (error) {
       dispatch(signInFailed(error.message));
-      toast.error(error.message);
+      // toast.error(error.message);
     }
   };
 
@@ -93,7 +95,7 @@ const Signin = () => {
               </Link>
             </p>
 
-            <Oauth />
+            {/* <Oauth /> */}
           </div>
         </div>
       </div>
