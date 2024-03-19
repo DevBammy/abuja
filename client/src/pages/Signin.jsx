@@ -43,14 +43,15 @@ const Signin = () => {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailed(data.message));
-        // toast.error(data.message);
+        toast.error(data.message);
         return;
       }
       dispatch(signInSuccess(data));
       nav('/profile');
+      toast.success('Welcome to your dashboard');
     } catch (error) {
       dispatch(signInFailed(error.message));
-      // toast.error(error.message);
+      toast.error(error.message);
     }
   };
 

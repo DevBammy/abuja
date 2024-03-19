@@ -4,6 +4,7 @@ import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/features/userSlice';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import Google from '../assets/google.png';
 import '../styles/auth.scss';
 
@@ -31,6 +32,7 @@ const Oauth = () => {
       const data = await res.json();
       dispatch(signInSuccess(data));
       nav('/profile');
+      toast.success('Welcome to your dashboard');
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +41,7 @@ const Oauth = () => {
   return (
     <>
       <button type="button" onClick={handleGoogleSignIn} className="oauth">
-        Sign in with Google <img className="google" src={Google} alt="" />
+        Continue With Google <img className="google" src={Google} alt="" />
       </button>
     </>
   );

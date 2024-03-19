@@ -22,11 +22,11 @@ export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const validUser = await User.findOne({ email });
-    if (!validUser) return errorHandler(401, 'invalid credentials');
+    if (!validUser) return next(errorHandler(401, 'Invalid credentials'));
     const validPassword = bcryptjs.compareSync(password, validUser.password);
-    if (!validPassword) return errorHandler(401, 'Invalid credentials');
+    if (!validPassword) return next(errorHandler(401, 'Invalid credentials'));
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    const { password: _, ...userWithoutPassword } = validUser._doc;
+    const { password: pass, ...userInfo } = validUser._doc;
 
     res
       .cookie('token', token, {
@@ -34,11 +34,7 @@ export const signin = async (req, res, next) => {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       })
       .status(200)
-      .json({
-        success: true,
-        token,
-        user: userWithoutPassword,
-      });
+      .json({ userInfo });
   } catch (error) {
     next(error);
   }
@@ -50,14 +46,14 @@ export const google = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      const { password: _, ...userWithoutPassword } = user._doc;
+      const { password: pass, ...userInfo } = user._doc;
       res
         .cookie('token', token, {
           httpOnly: true,
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         })
         .status(200)
-        .json(userWithoutPassword);
+        .json(userInfo);
     } else {
       const generatedPassword = Math.random().toString(36).slice(-8);
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
@@ -69,14 +65,14 @@ export const google = async (req, res, next) => {
       });
       newUser.save();
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-      const { password: _, ...userWithoutPassword } = newUser._doc;
+      const { password: pass, ...userInfo } = user._doc;
       res
         .cookie('token', token, {
           httpOnly: true,
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         })
         .status(200)
-        .json(userWithoutPassword);
+        .json(userInfo);
     }
   } catch (error) {
     next(error);

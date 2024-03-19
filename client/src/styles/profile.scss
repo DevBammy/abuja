@@ -94,6 +94,9 @@
             outline: none;
             border: 0;
             cursor: pointer;
+            &:active {
+              transform: scale(0.97);
+            }
           }
           .deleteBtn {
             @extend .edit;

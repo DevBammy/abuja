@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   getDownloadURL,
@@ -10,6 +11,7 @@ import {
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
+  logUserOut,
 } from '../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { app } from '../firebase';
@@ -30,6 +32,7 @@ const Profile = () => {
 
   const fileRef = useRef();
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   useEffect(() => {
     if (file) {
@@ -102,6 +105,12 @@ const Profile = () => {
     }
   };
 
+  const signOut = () => {
+    dispatch(logUserOut());
+    nav('/');
+    toast.success('Signed out successfully');
+  };
+
   // registration logic
 
   const [hasRegistered, setHasRegistered] = useState(false);
@@ -136,10 +145,11 @@ const Profile = () => {
       if (data.success === false) {
         toast.success('Registration failed');
         return;
+      } else {
+        toast.success('Registration successful');
+        setShowReg(false);
+        setHasRegistered(true);
       }
-      toast.success('Registration successful');
-      setShowReg(false);
-      setHasRegistered(true);
     } catch (error) {
       toast.error(error.message);
     }
@@ -148,7 +158,7 @@ const Profile = () => {
   return (
     <div className="profile">
       <header>
-        <span>Log Out</span>
+        <span onClick={signOut}>Log Out</span>
       </header>
 
       <div className="profileContent">
@@ -260,7 +270,6 @@ const Profile = () => {
               required
               onChange={handleChange}
             >
-              <option selected>Age Group</option>
               <option value="13-20">13 - 20</option>
               <option value="21-30">21 - 30</option>
               <option value="31-40">31 - 40</option>
@@ -301,7 +310,6 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.educationalLevel}
             >
-              <option selected>Educational Level</option>
               <option value="Primary">Primary</option>
               <option value="Secondary">Secondary</option>
               <option value="Tertiary">Tertiary</option>
@@ -312,7 +320,6 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.maritalStatus}
             >
-              <option selected>Marital Status</option>
               <option value="Single">Single</option>
               <option value="Married">Married</option>
             </select>
@@ -401,7 +408,6 @@ const Profile = () => {
               required
               onChange={handleRegChange}
               defaultValue={currentUser.title}
-              onSubmit={handleReg}
             >
               <option value="Pastor">Pastor</option>
               <option value="Assistant Pastor">Assistance Pastor</option>
@@ -479,9 +485,9 @@ const Profile = () => {
               <button disabled={hasRegistered} type="submit">
                 Register
               </button>
-              <button className="cancel" onClick={handleShowReg}>
+              <span className="cancel" onClick={handleShowReg}>
                 Cancel
-              </button>
+              </span>
             </div>
           </form>
         </div>

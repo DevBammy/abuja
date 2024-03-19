@@ -32,12 +32,13 @@ const Signup = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        setIsLoading(false);
         toast(data.message);
+        setIsLoading(false);
         return;
       }
       setIsLoading(false);
       nav('/signin');
+      toast.success('Registration successful, Login with your credentials');
     } catch (error) {
       setIsLoading(false);
       toast(error.message);
