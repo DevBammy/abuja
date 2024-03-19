@@ -209,6 +209,80 @@
       }
     }
   }
+
+  .reg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    z-index: 5;
+
+    .regContent {
+      height: 300px;
+      max-width: 80%;
+      min-width: 300px;
+      background-color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+
+      form {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+
+        .input,
+        select {
+          width: 100%;
+          margin-bottom: 0.4rem;
+          padding: 0.6rem;
+          background-color: #e4e1e1;
+          outline: none;
+          border: 0;
+
+          &.uid {
+            display: none;
+          }
+        }
+
+        .buttons {
+          width: 100%;
+          position: absolute;
+          bottom: -40px;
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+
+          button {
+            background-color: #333;
+            color: white;
+            outline: none;
+            border: none;
+            padding: 0.4rem;
+            cursor: pointer;
+          }
+          .cancel {
+            background-color: transparent;
+            color: #333;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
   .show {
     display: flex;
   }

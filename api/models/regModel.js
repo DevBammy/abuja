@@ -2,13 +2,13 @@ import mongoose from 'mongoose';
 
 const regSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-    },
     fullname: {
       type: String,
     },
-    email: {
+    gender: {
+      type: String,
+    },
+    title: {
       type: String,
     },
     phone: {
@@ -23,13 +23,7 @@ const regSchema = new mongoose.Schema(
     area: {
       type: String,
     },
-    gender: {
-      type: String,
-    },
-    ageGrpup: {
-      type: String,
-    },
-    unit: {
+    uid: {
       type: String,
     },
   },

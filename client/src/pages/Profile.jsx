@@ -19,7 +19,9 @@ import '../styles/profile.scss';
 
 const Profile = () => {
   const [showDelete, setShowDelete] = useState(false);
+  const [showReg, setShowReg] = useState(false);
   const [formData, setFormData] = useState({});
+  const [regFormData, setRegFormData] = useState({});
   const { currentUser } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [fileProgress, setFileProgress] = useState(0);
@@ -69,6 +71,7 @@ const Profile = () => {
   const handleShowDelete = () => {
     setShowDelete((prev) => !prev);
   };
+
   const handleShowPassword = () => {
     setSee((prev) => !prev);
   };
@@ -95,6 +98,49 @@ const Profile = () => {
       console.log('success');
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+      toast.error(error.message);
+    }
+  };
+
+  // registration logic
+
+  const [hasRegistered, setHasRegistered] = useState(false);
+
+  const handleShowReg = () => {
+    setShowReg((prev) => !prev);
+  };
+
+  const handleRegChange = (e) => {
+    setRegFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    setRegFormData(currentUser);
+  }, [currentUser]);
+
+  const handleReg = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(`/api/reg/register/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(regFormData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        toast.success('Registration failed');
+        return;
+      }
+      toast.success('Registration successful');
+      setShowReg(false);
+      setHasRegistered(true);
+    } catch (error) {
       toast.error(error.message);
     }
   };
@@ -315,7 +361,11 @@ const Profile = () => {
                 <span>Venue: </span>TACN Abuja FCT Metropolitan Area Head
                 Quarter. Plot 494, Durumi District, Abuja, FCT.
               </p>
-              <button type="button" className="register">
+              <button
+                type="button"
+                className="register"
+                onClick={handleShowReg}
+              >
                 Register Now
               </button>
             </div>
@@ -339,6 +389,101 @@ const Profile = () => {
               Delete
             </button>
           </div>
+        </div>
+      </div>
+
+      <div className={showReg ? 'reg show' : 'reg'}>
+        <div className="regContent">
+          <form onSubmit={handleReg}>
+            <select
+              name="title"
+              id="title"
+              required
+              onChange={handleRegChange}
+              defaultValue={currentUser.title}
+              onSubmit={handleReg}
+            >
+              <option value="Pastor">Pastor</option>
+              <option value="Assistant Pastor">Assistance Pastor</option>
+              <option value="Student Pastor">Student Pastor</option>
+              <option value="Elder">Elder</option>
+              <option value="Deacon">Deacon</option>
+              <option value="Deaconess">Deaconess</option>
+              <option value="Brother">Brother</option>
+              <option value="Sister">Sister</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Full Name"
+              onChange={handleRegChange}
+              id="fullname"
+              required
+              className="input"
+              defaultValue={currentUser.fullname}
+            />
+            <select
+              name="gender"
+              id="gender"
+              onChange={handleRegChange}
+              defaultValue={currentUser.gender}
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              onChange={handleRegChange}
+              id="phone"
+              required
+              className="input"
+              defaultValue={currentUser.phone}
+            />
+
+            <input
+              type="text"
+              placeholder="Assembly"
+              onChange={handleRegChange}
+              id="assembly"
+              required
+              className="input"
+              defaultValue={currentUser.assembly}
+            />
+            <input
+              type="text"
+              placeholder="District"
+              onChange={handleRegChange}
+              id="district"
+              required
+              className="input"
+              defaultValue={currentUser.district}
+            />
+            <input
+              type="text"
+              placeholder="Area"
+              onChange={handleRegChange}
+              id="area"
+              required
+              className="input"
+              defaultValue={currentUser.area}
+            />
+            <input
+              type="text"
+              id="uid"
+              required
+              className="input uid"
+              defaultValue={currentUser._id}
+            />
+
+            <div className="buttons">
+              <button disabled={hasRegistered} type="submit">
+                Register
+              </button>
+              <button className="cancel" onClick={handleShowReg}>
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
