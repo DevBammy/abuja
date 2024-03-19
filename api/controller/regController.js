@@ -12,6 +12,9 @@ export const register = async (req, res, next) => {
     gender,
     ageGroup,
     unit,
+    educationalLevel,
+    maritalStatus,
+    avatar,
   } = req.body;
 
   const newRegistration = new Register({
@@ -25,6 +28,9 @@ export const register = async (req, res, next) => {
     gender,
     ageGroup,
     unit,
+    educationalLevel,
+    maritalStatus,
+    avatar,
   });
 
   try {

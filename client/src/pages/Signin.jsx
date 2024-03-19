@@ -41,14 +41,14 @@ const Signin = () => {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailed(data.message));
-        toast(data.message);
+        toast.error(data.message);
         return;
       }
       dispatch(signInSuccess(data.user));
       nav('/profile');
     } catch (error) {
       dispatch(signInFailed(error.message));
-      toast(error.message);
+      toast.error(error.message);
     }
   };
 
