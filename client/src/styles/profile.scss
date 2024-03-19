@@ -68,6 +68,19 @@
           background-color: #fffafa;
           outline: none;
           border: 0;
+
+          &.psw {
+            width: 60%;
+          }
+        }
+
+        .password {
+          display: flex;
+          align-items: center;
+
+          .see {
+            cursor: pointer;
+          }
         }
 
         .control {

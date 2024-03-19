@@ -17,6 +17,7 @@ const Profile = () => {
   const [file, setFile] = useState(undefined);
   const [fileProgress, setFileProgress] = useState(0);
   const [fileError, setFileError] = useState(false);
+  const [see, setSee] = useState(false);
 
   const fileRef = useRef();
 
@@ -59,6 +60,9 @@ const Profile = () => {
 
   const handleShowDelete = () => {
     setShowDelete((prev) => !prev);
+  };
+  const handleShowPassword = () => {
+    setSee((prev) => !prev);
   };
 
   return (
@@ -207,6 +211,23 @@ const Profile = () => {
               <option defaultValue="Single">Single</option>
               <option value="Married">Married</option>
             </select>
+            <div className="password">
+              <input
+                type={see ? 'text' : 'password'}
+                placeholder="Password"
+                className="input psw"
+                id="password"
+                required
+                onChange={handleChange}
+              />
+              <button
+                type="button"
+                className="see"
+                onClick={handleShowPassword}
+              >
+                Show Password
+              </button>
+            </div>
             <div className="control">
               <button type="button" className="edit">
                 Update Profile
