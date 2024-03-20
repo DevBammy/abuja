@@ -1,8 +1,17 @@
 import Register from '../models/regModel.js';
 
 export const register = async (req, res, next) => {
-  const { title, fullname, phone, assembly, district, area, gender, uid } =
-    req.body;
+  const {
+    title,
+    fullname,
+    phone,
+    assembly,
+    district,
+    area,
+    gender,
+    uid,
+    avatar,
+  } = req.body;
 
   const newRegistration = new Register({
     title,
@@ -13,6 +22,7 @@ export const register = async (req, res, next) => {
     area,
     gender,
     uid,
+    avatar,
   });
 
   try {

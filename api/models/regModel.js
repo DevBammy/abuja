@@ -26,6 +26,9 @@ const regSchema = new mongoose.Schema(
     uid: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

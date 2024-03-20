@@ -36,6 +36,10 @@ const Profile = () => {
     }
   }, [file]);
 
+  useEffect(() => {
+    setRegFormData(currentUser.rest);
+  }, [currentUser]);
+
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
@@ -67,6 +71,13 @@ const Profile = () => {
     });
   };
 
+  const handleRegChange = (e) => {
+    setRegFormData({
+      ...regFormData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
   const handleShowDelete = () => {
     setShowDelete((prev) => !prev);
   };
@@ -75,17 +86,11 @@ const Profile = () => {
     setSee((prev) => !prev);
   };
 
-  const handleRegChange = (e) => {
-    setRegFormData({
-      ...regFormData,
-      [e.target.id]: e.target.value,
-    });
+  const handleShowReg = () => {
+    setShowReg((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   setRegFormData(currentUser);
-  // }, [formData]);
-
+  // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -123,11 +128,6 @@ const Profile = () => {
   };
 
   // registration logic
-
-  const handleShowReg = () => {
-    setShowReg((prev) => !prev);
-  };
-
   const handleReg = async (e) => {
     e.preventDefault();
 
@@ -577,10 +577,18 @@ const Profile = () => {
             </div>
             <input
               type="text"
-              id="uid"
+              id="regId"
               required
               className="input uid"
               defaultValue={currentUser.rest._id}
+            />
+
+            <input
+              type="text"
+              id="uid"
+              required
+              className="input uid"
+              defaultValue={currentUser.rest.avatar}
             />
 
             <div className="buttons">
