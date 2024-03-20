@@ -253,7 +253,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem 0.3rem;
+      padding: 2rem;
 
       .form {
         width: 100%;
@@ -282,7 +282,7 @@
         .buttons {
           width: 100%;
           position: absolute;
-          bottom: -90px;
+          bottom: -40px;
           display: flex;
           justify-content: space-between;
           gap: 1rem;
@@ -391,6 +391,7 @@
     max-width: 100%;
 
     .regContent {
+      padding: 2rem 0 !important;
       min-width: 90%;
       .form {
         overflow-y: scroll;
@@ -406,6 +407,7 @@
           margin-top: 0.3rem;
           flex-direction: column;
           gap: 0.4rem;
+          bottom: -90px !important;
 
           button {
             padding: 0.6rem;
