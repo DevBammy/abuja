@@ -65,11 +65,11 @@ const Signup = () => {
         return;
       }
       setIsLoading(false);
-      nav('/signin'); // Assuming nav function exists and properly navigates
+      nav('/signin');
       toast.success('Registration successful. Login with your credentials.');
     } catch (error) {
       setIsLoading(false);
-      console.error(error); // Log error for debugging
+      console.error(error);
       toast.error('An error occurred. Please try again later.');
     }
   };

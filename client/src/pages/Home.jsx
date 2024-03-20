@@ -23,7 +23,7 @@ const Home = () => {
               Sign In
             </Link>
             <Link className="btn btnUp" to="/signup">
-              Sign Up
+              Create Account
             </Link>
           </div>
         </div>

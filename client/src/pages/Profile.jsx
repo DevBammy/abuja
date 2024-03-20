@@ -26,7 +26,6 @@ const Profile = () => {
   const [see, setSee] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(true);
   const fileRef = useRef();
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -76,6 +75,17 @@ const Profile = () => {
     setSee((prev) => !prev);
   };
 
+  const handleRegChange = (e) => {
+    setRegFormData({
+      ...regFormData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // useEffect(() => {
+  //   setRegFormData(currentUser);
+  // }, [formData]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -91,17 +101,17 @@ const Profile = () => {
       const data = await res.json();
       if (data.success === false) {
         setError(data.message);
-        setIsLoading;
+        setIsLoading(false);
         toast.error(data.message);
         return;
       }
       dispatch(updateUserSuccess(data));
       toast.success('Profile updated successfully');
-      setDisabled(false);
+      // setDisabled(false);
       console.log('success');
     } catch (error) {
-      setError(data.message);
-      setIsLoading;
+      setError(error.message);
+      setIsLoading(false);
       toast.error(error.message);
     }
   };
@@ -114,26 +124,9 @@ const Profile = () => {
 
   // registration logic
 
-  const [hasRegistered, setHasRegistered] = useState(false);
-
   const handleShowReg = () => {
-    if (disabled) {
-      toast.error('complete your profile before proceeding');
-    } else {
-      setShowReg((prev) => !prev);
-    }
+    setShowReg((prev) => !prev);
   };
-
-  const handleRegChange = (e) => {
-    setRegFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    setRegFormData(currentUser);
-  }, [currentUser]);
 
   const handleReg = async (e) => {
     e.preventDefault();
@@ -153,7 +146,6 @@ const Profile = () => {
       } else {
         toast.success('Registration successful');
         setShowReg(false);
-        setHasRegistered(true);
       }
     } catch (error) {
       toast.error(error.message);
@@ -201,154 +193,203 @@ const Profile = () => {
           </p>
 
           <div className="text">
-            <select
-              name="title"
-              id="title"
-              required
-              onChange={handleChange}
-              defaultValue={currentUser.rest.title}
-            >
-              <option disabled value="">
-                Title
-              </option>
-              <option value="Pastor">Pastor</option>
-              <option value="Assistant Pastor">Assistance Pastor</option>
-              <option value="Student Pastor">Student Pastor</option>
-              <option value="Elder">Elder</option>
-              <option value="Deacon">Deacon</option>
-              <option value="Deaconess">Deaconess</option>
-              <option value="Brother">Brother</option>
-              <option value="Sister">Sister</option>
-            </select>
-            <input
-              defaultValue={currentUser.rest.fullname}
-              type="text"
-              placeholder="Full Name"
-              className="input"
-              id="fullname"
-              required
-              onChange={handleChange}
-            />
-            <input
-              defaultValue={currentUser.rest.email}
-              type="email"
-              placeholder="Email"
-              className="input"
-              id="email"
-              required
-              onChange={handleChange}
-            />
-            <input
-              defaultValue={currentUser.rest.phone}
-              type="tel"
-              placeholder="Phone Number"
-              className="input"
-              id="phone"
-              required
-              onChange={handleChange}
-            />
-            <input
-              defaultValue={currentUser.rest.assembly}
-              type="text"
-              placeholder="Assembly"
-              className="input"
-              id="assembly"
-              required
-              onChange={handleChange}
-            />
-            <input
-              defaultValue={currentUser.rest.district}
-              type="text"
-              placeholder="District"
-              className="input"
-              id="district"
-              required
-              onChange={handleChange}
-            />
-            <input
-              defaultValue={currentUser.rest.area}
-              type="text"
-              placeholder="Area"
-              className="input"
-              id="area"
-              required
-              onChange={handleChange}
-            />
-            <select
-              defaultValue={currentUser.rest.ageGroup}
-              name="ageGroup"
-              id="ageGroup"
-              required
-              onChange={handleChange}
-            >
-              <option disabled value="">
-                Age Group
-              </option>
-              <option value="13-20">13 - 20</option>
-              <option value="21-30">21 - 30</option>
-              <option value="31-40">31 - 40</option>
-              <option value="40+">41 & Above</option>
-            </select>
-            <select
-              name="gender"
-              id="gender"
-              onChange={handleChange}
-              defaultValue={currentUser.rest.gender}
-            >
-              <option disabled value="">
-                Gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            <select
-              name="unit"
-              id="unit"
-              onChange={handleChange}
-              defaultValue={currentUser.rest.unit}
-            >
-              <option disabled value="">
-                Unit
-              </option>
-              <option value="Unit">Unit</option>
-              <option value="Choir">Choir</option>
-              <option value="Drama">Drama</option>
-              <option value="Media">Media</option>
-              <option value="Medical">Medical</option>
-              <option value="Prayer">Prayer</option>
-              <option value="PAS">PAS</option>
-              <option value="Rapporteur">Rapporteur</option>
-              <option value="Ushering">Ushering</option>
-              <option value="Accreditation">Accreditation</option>
-              <option value="Bible Study">Bible Study</option>
-              <option value="Security">Security</option>
-              <option value="Nill">Nill</option>
-            </select>
-            <select
-              name="educationalLevel"
-              id="educationalLevel"
-              onChange={handleChange}
-              defaultValue={currentUser.rest.educationalLevel}
-            >
-              <option disabled value="">
-                Educational Level
-              </option>
-              <option value="Primary">Primary</option>
-              <option value="Secondary">Secondary</option>
-              <option value="Tertiary">Tertiary</option>
-            </select>
-            <select
-              name="maritalStatus"
-              id="maritalStatus"
-              onChange={handleChange}
-              defaultValue={currentUser.rest.maritalStatus}
-            >
-              <option disabled value="">
-                Marital Status
-              </option>
-              <option value="Single">Single</option>
-              <option value="Married">Married</option>
-            </select>
+            <div>
+              <label>
+                Title<span>*</span>
+              </label>
+              <select
+                name="title"
+                id="title"
+                required
+                onChange={handleChange}
+                defaultValue={currentUser.rest.title}
+              >
+                <option disabled value="">
+                  Title
+                </option>
+                <option value="Pastor">Pastor</option>
+                <option value="Assistant Pastor">Assistance Pastor</option>
+                <option value="Student Pastor">Student Pastor</option>
+                <option value="Elder">Elder</option>
+                <option value="Deacon">Deacon</option>
+                <option value="Deaconess">Deaconess</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+              </select>
+            </div>
+            <div>
+              <label>
+                Full Name<span>*</span>
+              </label>
+              <input
+                defaultValue={currentUser.rest.fullname}
+                type="text"
+                placeholder="Enter your full name"
+                className="input"
+                id="fullname"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>
+                Email<span>*</span>
+              </label>
+              <input
+                defaultValue={currentUser.rest.email}
+                type="email"
+                placeholder="enter your email"
+                className="input"
+                id="email"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Phone</label>
+              <input
+                defaultValue={currentUser.rest.phone}
+                type="tel"
+                placeholder="enter your phone number"
+                className="input"
+                id="phone"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>
+                Assembly<span>*</span>
+              </label>
+              <input
+                defaultValue={currentUser.rest.assembly}
+                type="text"
+                placeholder="Enter your assembly"
+                className="input"
+                id="assembly"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>
+                District<span>*</span>
+              </label>
+              <input
+                defaultValue={currentUser.rest.district}
+                type="text"
+                placeholder="Enter your district"
+                className="input"
+                id="district"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>
+                Area<span>*</span>
+              </label>
+              <input
+                defaultValue={currentUser.rest.area}
+                type="text"
+                placeholder="enter your area"
+                className="input"
+                id="area"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>
+                Age Group<span>*</span>
+              </label>
+              <select
+                defaultValue={currentUser.rest.ageGroup}
+                name="ageGroup"
+                id="ageGroup"
+                required
+                onChange={handleChange}
+              >
+                <option value="13-20">13 - 20</option>
+                <option value="21-30">21 - 30</option>
+                <option value="31-40">31 - 40</option>
+                <option value="40+">41 & Above</option>
+              </select>
+            </div>
+            <div>
+              <label>
+                Gender<span>*</span>
+              </label>
+              <select
+                name="gender"
+                id="gender"
+                onChange={handleChange}
+                defaultValue={currentUser.rest.gender}
+              >
+                <option disabled value="">
+                  Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div>
+              <label>Unit</label>
+              <select
+                name="unit"
+                id="unit"
+                onChange={handleChange}
+                defaultValue={currentUser.rest.unit}
+              >
+                <option disabled value="">
+                  Unit
+                </option>
+                <option value="Unit">Unit</option>
+                <option value="Choir">Choir</option>
+                <option value="Drama">Drama</option>
+                <option value="Media">Media</option>
+                <option value="Medical">Medical</option>
+                <option value="Prayer">Prayer</option>
+                <option value="PAS">PAS</option>
+                <option value="Rapporteur">Rapporteur</option>
+                <option value="Ushering">Ushering</option>
+                <option value="Accreditation">Accreditation</option>
+                <option value="Bible Study">Bible Study</option>
+                <option value="Security">Security</option>
+                <option value="Nill">Nill</option>
+              </select>
+            </div>
+            <div>
+              <label>Educational Level</label>
+              <select
+                name="educationalLevel"
+                id="educationalLevel"
+                onChange={handleChange}
+                defaultValue={currentUser.rest.educationalLevel}
+              >
+                <option disabled value="">
+                  Educational Level
+                </option>
+                <option value="Primary">Primary</option>
+                <option value="Secondary">Secondary</option>
+                <option value="Tertiary">Tertiary</option>
+              </select>
+            </div>
+            <div>
+              <label>Marital Status</label>
+              <select
+                name="maritalStatus"
+                id="maritalStatus"
+                onChange={handleChange}
+                defaultValue={currentUser.rest.maritalStatus}
+              >
+                <option disabled value="">
+                  Marital Status
+                </option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+              </select>
+            </div>
             <div className="password">
               <input
                 type={see ? 'text' : 'password'}
@@ -366,16 +407,16 @@ const Profile = () => {
               </button>
             </div>
             <div className="control">
-              <button type="submit" className="edit" onClick={handleSubmit}>
+              <button type="submit" className="edit">
                 Update Profile
               </button>
-              <button
+              {/* <button
                 type="button"
                 className="deleteBtn"
                 onClick={handleShowDelete}
               >
                 Delete Profile
-              </button>
+              </button> */}
             </div>
           </div>
         </form>
@@ -395,7 +436,6 @@ const Profile = () => {
                 Quarter. Plot 494, Durumi District, Abuja, FCT.
               </p>
               <button
-                disabled={disabled}
                 type="button"
                 className="register"
                 onClick={handleShowReg}
@@ -430,7 +470,9 @@ const Profile = () => {
         <div className="regContent">
           <form onSubmit={handleReg} className="form">
             <div>
-              <span>Title:</span>
+              <span>
+                Title<span>*</span>
+              </span>
               <select
                 name="title"
                 id="title"
@@ -449,7 +491,9 @@ const Profile = () => {
               </select>
             </div>
             <div>
-              <span>Full Name</span>
+              <span>
+                Full Name<span>*</span>
+              </span>
               <input
                 type="text"
                 placeholder="Full Name"
@@ -461,7 +505,9 @@ const Profile = () => {
               />
             </div>
             <div>
-              <span>Gender</span>
+              <span>
+                Gender<span>*</span>
+              </span>
               <select
                 name="gender"
                 id="gender"
@@ -473,7 +519,9 @@ const Profile = () => {
               </select>
             </div>
             <div>
-              <span>Phone Number</span>
+              <span>
+                Phone Number<span>*</span>
+              </span>
               <input
                 type="tel"
                 placeholder="Phone Number"
@@ -486,7 +534,9 @@ const Profile = () => {
             </div>
 
             <div>
-              <span>Assembly</span>
+              <span>
+                Assembly<span>*</span>
+              </span>
               <input
                 type="text"
                 placeholder="Assembly"
@@ -498,7 +548,9 @@ const Profile = () => {
               />
             </div>
             <div>
-              <span>District</span>
+              <span>
+                District<span>*</span>
+              </span>
               <input
                 type="text"
                 placeholder="District"
@@ -510,7 +562,9 @@ const Profile = () => {
               />
             </div>
             <div>
-              <span>Area</span>
+              <span>
+                Area<span>*</span>
+              </span>
               <input
                 type="text"
                 placeholder="Area"
@@ -530,9 +584,7 @@ const Profile = () => {
             />
 
             <div className="buttons">
-              <button disabled={hasRegistered} type="submit">
-                Register
-              </button>
+              <button type="submit">Register</button>
               <span className="cancel" onClick={handleShowReg}>
                 Cancel
               </span>
