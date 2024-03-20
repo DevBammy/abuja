@@ -19,6 +19,32 @@ const Signup = () => {
     });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     setIsLoading(true);
+  //     const res = await fetch('/api/auth/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+  //     const data = await res.json();
+  //     if (data.success === false) {
+  //       toast.error(data.message);
+  //       setIsLoading(false);
+  //       return;
+  //     }
+  //     setIsLoading(false);
+  //     nav('/signin');
+  //     toast.success('Registration successful, Login with your credentials');
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //     toast(error.message);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,18 +56,21 @@ const Signup = () => {
         },
         body: JSON.stringify(formData),
       });
+      if (!res.ok) {
+        throw new Error('Failed to register. Please try again.');
+      }
       const data = await res.json();
       if (data.success === false) {
-        toast.error(data.message);
-        setIsLoading(false);
+        toast.error(data.message || 'Registration failed.');
         return;
       }
       setIsLoading(false);
-      nav('/signin');
-      toast.success('Registration successful, Login with your credentials');
+      nav('/signin'); // Assuming nav function exists and properly navigates
+      toast.success('Registration successful. Login with your credentials.');
     } catch (error) {
       setIsLoading(false);
-      toast(error.message);
+      console.error(error); // Log error for debugging
+      toast.error('An error occurred. Please try again later.');
     }
   };
 
