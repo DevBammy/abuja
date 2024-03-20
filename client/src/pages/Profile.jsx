@@ -158,7 +158,9 @@ const Profile = () => {
   return (
     <div className="profile">
       <header>
-        {/* <p className="scroll">Welcome! Kindly scroll down to register</p> */}
+        <p className="scroll">
+          Welcome! please ensure that you register only once.
+        </p>
         <span onClick={signOut}>Log Out</span>
       </header>
 

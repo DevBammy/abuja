@@ -306,13 +306,13 @@
       span {
         top: 15%;
       }
-      // .scroll {
-      //   position: absolute;
-      //   top: 10%;
-      //   left: 10%;
-      //   width: 50%;
-      //   display: block;
-      // }
+      .scroll {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 50%;
+        display: block;
+      }
     }
     .profileContent {
       flex-direction: column;
