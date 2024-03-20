@@ -253,9 +253,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      padding: 2rem 0.3rem;
 
       .form {
+        width: 100%;
         position: relative;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -281,7 +282,7 @@
         .buttons {
           width: 100%;
           position: absolute;
-          bottom: -40px;
+          bottom: -90px;
           display: flex;
           justify-content: space-between;
           gap: 1rem;
@@ -291,7 +292,7 @@
             color: white;
             outline: none;
             border: none;
-            padding: 0.4rem;
+            padding: 0.8rem;
             cursor: pointer;
           }
           .cancel {
