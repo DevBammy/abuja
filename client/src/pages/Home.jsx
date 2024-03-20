@@ -12,13 +12,10 @@ const Home = () => {
         </div>
         <div className="right">
           <h1>Welcome</h1>
+          <p>Kindly login with your registered email</p>
           <p>
-            Sign in or sign up with your credentials to book your space for the
-            upcoming <span>TACN Abuja Area Youth Convention</span>.
-          </p>
-          <p>
-            After successfull registration, you are adviced to complete your
-            profile before proceeding to book your space for the programe.
+            You are adviced to complete your profile before proceeding to book
+            your space for the program
           </p>
 
           <div className="btns">

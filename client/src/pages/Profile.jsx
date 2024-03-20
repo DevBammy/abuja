@@ -203,7 +203,10 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.rest.title}
             >
-              <option defaultValue="Pastor">Pastor</option>
+              <option disabled value="">
+                Title
+              </option>
+              <option value="Pastor">Pastor</option>
               <option value="Assistant Pastor">Assistance Pastor</option>
               <option value="Student Pastor">Student Pastor</option>
               <option value="Elder">Elder</option>
@@ -273,6 +276,9 @@ const Profile = () => {
               required
               onChange={handleChange}
             >
+              <option disabled value="">
+                Age Group
+              </option>
               <option value="13-20">13 - 20</option>
               <option value="21-30">21 - 30</option>
               <option value="31-40">31 - 40</option>
@@ -284,6 +290,9 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.rest.gender}
             >
+              <option disabled value="">
+                Gender
+              </option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
@@ -293,6 +302,9 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.rest.unit}
             >
+              <option disabled value="">
+                Unit
+              </option>
               <option value="Unit">Unit</option>
               <option value="Choir">Choir</option>
               <option value="Drama">Drama</option>
@@ -313,6 +325,9 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.rest.educationalLevel}
             >
+              <option disabled value="">
+                Educational Level
+              </option>
               <option value="Primary">Primary</option>
               <option value="Secondary">Secondary</option>
               <option value="Tertiary">Tertiary</option>
@@ -323,6 +338,9 @@ const Profile = () => {
               onChange={handleChange}
               defaultValue={currentUser.rest.maritalStatus}
             >
+              <option disabled value="">
+                Marital Status
+              </option>
               <option value="Single">Single</option>
               <option value="Married">Married</option>
             </select>
@@ -357,13 +375,13 @@ const Profile = () => {
           </div>
         </form>
         <div className="right">
-          <h1>Up-coming Events:</h1>
+          <h1>Up-coming Event:</h1>
           <div className="event">
             <div className="img">
               <img src={Flyer} alt="" />
             </div>
             <div className="text">
-              <h2>TACN Abuja Youth Convention</h2>
+              <h2>TACN Abuja Metro Youth Convocation</h2>
               <p>
                 <span>Date:</span> Fridat 29th - Sunday 31st March, 2024
               </p>

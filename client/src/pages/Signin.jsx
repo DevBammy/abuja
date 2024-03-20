@@ -64,7 +64,7 @@ const Signin = () => {
         </div>
         <div className="right">
           <h1>Welcome Back! </h1>
-          <p>Login with your credentials</p>
+          <p>Kindly login with your registered email!</p>
 
           <form className="form" onSubmit={handleSubmit}>
             <input
