@@ -383,7 +383,7 @@ const Profile = () => {
             <div className="text">
               <h2>TACN Abuja Metro Youth Convocation</h2>
               <p>
-                <span>Date:</span> Fridat 29th - Sunday 31st March, 2024
+                <span>Date:</span> Friday 29th - Sunday 31st March, 2024
               </p>
               <p>
                 <span>Venue: </span>TACN Abuja FCT Metropolitan Area Head
