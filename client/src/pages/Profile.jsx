@@ -26,7 +26,7 @@ const Profile = () => {
   const [see, setSee] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [disabled, setDisabled] = useState(true);
   const fileRef = useRef();
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -97,6 +97,7 @@ const Profile = () => {
       }
       dispatch(updateUserSuccess(data));
       toast.success('Profile updated successfully');
+      setDisabled(false);
       console.log('success');
     } catch (error) {
       setError(data.message);
@@ -116,7 +117,11 @@ const Profile = () => {
   const [hasRegistered, setHasRegistered] = useState(false);
 
   const handleShowReg = () => {
-    setShowReg((prev) => !prev);
+    if (disabled) {
+      toast.error('complete your profile before proceeding');
+    } else {
+      setShowReg((prev) => !prev);
+    }
   };
 
   const handleRegChange = (e) => {
@@ -390,6 +395,7 @@ const Profile = () => {
                 Quarter. Plot 494, Durumi District, Abuja, FCT.
               </p>
               <button
+                disabled={disabled}
                 type="button"
                 className="register"
                 onClick={handleShowReg}
