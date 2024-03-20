@@ -32,7 +32,7 @@ const Signup = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        toast(data.message);
+        toast.error(data.message);
         setIsLoading(false);
         return;
       }
