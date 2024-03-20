@@ -7,12 +7,7 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
-import {
-  updateUserFailure,
-  updateUserStart,
-  updateUserSuccess,
-  logUserOut,
-} from '../redux/features/userSlice';
+import { updateUserSuccess, logUserOut } from '../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
 import { app } from '../firebase';
 import toast from 'react-hot-toast';
@@ -29,6 +24,8 @@ const Profile = () => {
   const [fileProgress, setFileProgress] = useState(0);
   const [fileError, setFileError] = useState(false);
   const [see, setSee] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fileRef = useRef();
   const dispatch = useDispatch();
@@ -83,8 +80,8 @@ const Profile = () => {
     e.preventDefault();
 
     try {
-      dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      setIsLoading(true);
+      const res = await fetch(`/api/user/update/${currentUser.rest._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,14 +90,17 @@ const Profile = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(updateUserFailure(data.message));
+        setError(data.message);
+        setIsLoading;
+        toast.error(data.message);
         return;
       }
       dispatch(updateUserSuccess(data));
       toast.success('Profile updated successfully');
       console.log('success');
     } catch (error) {
-      dispatch(updateUserFailure(error.message));
+      setError(data.message);
+      setIsLoading;
       toast.error(error.message);
     }
   };
@@ -158,6 +158,7 @@ const Profile = () => {
   return (
     <div className="profile">
       <header>
+        {/* <p className="scroll">Welcome! Kindly scroll down to register</p> */}
         <span onClick={signOut}>Log Out</span>
       </header>
 
@@ -176,7 +177,7 @@ const Profile = () => {
               onChange={(e) => setFile(e.target.files[0])}
             />
             <img
-              src={formData.avatar || currentUser.avatar}
+              src={formData.avatar || currentUser.rest.avatar}
               alt=""
               onClick={() => fileRef.current.click()}
             />
@@ -198,7 +199,7 @@ const Profile = () => {
               id="title"
               required
               onChange={handleChange}
-              defaultValue={currentUser.title}
+              defaultValue={currentUser.rest.title}
             >
               <option defaultValue="Pastor">Pastor</option>
               <option value="Assistant Pastor">Assistance Pastor</option>
@@ -210,7 +211,7 @@ const Profile = () => {
               <option value="Sister">Sister</option>
             </select>
             <input
-              defaultValue={currentUser.fullname}
+              defaultValue={currentUser.rest.fullname}
               type="text"
               placeholder="Full Name"
               className="input"
@@ -219,7 +220,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <input
-              defaultValue={currentUser.email}
+              defaultValue={currentUser.rest.email}
               type="email"
               placeholder="Email"
               className="input"
@@ -228,7 +229,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <input
-              defaultValue={currentUser.phone}
+              defaultValue={currentUser.rest.phone}
               type="tel"
               placeholder="Phone Number"
               className="input"
@@ -237,7 +238,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <input
-              defaultValue={currentUser.assembly}
+              defaultValue={currentUser.rest.assembly}
               type="text"
               placeholder="Assembly"
               className="input"
@@ -246,7 +247,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <input
-              defaultValue={currentUser.district}
+              defaultValue={currentUser.rest.district}
               type="text"
               placeholder="District"
               className="input"
@@ -255,7 +256,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <input
-              defaultValue={currentUser.area}
+              defaultValue={currentUser.rest.area}
               type="text"
               placeholder="Area"
               className="input"
@@ -264,7 +265,7 @@ const Profile = () => {
               onChange={handleChange}
             />
             <select
-              defaultValue={currentUser.ageGroup}
+              defaultValue={currentUser.rest.ageGroup}
               name="ageGroup"
               id="ageGroup"
               required
@@ -279,7 +280,7 @@ const Profile = () => {
               name="gender"
               id="gender"
               onChange={handleChange}
-              defaultValue={currentUser.gender}
+              defaultValue={currentUser.rest.gender}
             >
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -288,7 +289,7 @@ const Profile = () => {
               name="unit"
               id="unit"
               onChange={handleChange}
-              defaultValue={currentUser.unit}
+              defaultValue={currentUser.rest.unit}
             >
               <option value="Unit">Unit</option>
               <option value="Choir">Choir</option>
@@ -308,7 +309,7 @@ const Profile = () => {
               name="educationalLevel"
               id="educationalLevel"
               onChange={handleChange}
-              defaultValue={currentUser.educationalLevel}
+              defaultValue={currentUser.rest.educationalLevel}
             >
               <option value="Primary">Primary</option>
               <option value="Secondary">Secondary</option>
@@ -318,7 +319,7 @@ const Profile = () => {
               name="maritalStatus"
               id="maritalStatus"
               onChange={handleChange}
-              defaultValue={currentUser.maritalStatus}
+              defaultValue={currentUser.rest.maritalStatus}
             >
               <option value="Single">Single</option>
               <option value="Married">Married</option>

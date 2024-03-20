@@ -31,3 +31,9 @@ h1 {
 p {
   margin: 0.5rem;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+}

@@ -13,6 +13,10 @@
     background-position: center;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
     z-index: 1;
+
+    .scroll {
+      display: none;
+    }
     span {
       position: absolute;
       top: 50%;
@@ -288,5 +292,67 @@
   }
   .show {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    height: max-content;
+
+    header {
+      span {
+        top: 15%;
+      }
+      // .scroll {
+      //   position: absolute;
+      //   top: 10%;
+      //   left: 10%;
+      //   width: 50%;
+      //   display: block;
+      // }
+    }
+    .profileContent {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: max-content;
+      margin-bottom: 2rem;
+
+      .left {
+        width: 100%;
+        height: 100%;
+
+        .img {
+          height: 240px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .text {
+          height: 80%;
+        }
+      }
+      .right {
+        width: 100%;
+        height: max-content;
+
+        h1 {
+          margin: 1rem 0;
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        .event {
+          .text {
+            h2 {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
   }
 }

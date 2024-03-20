@@ -121,3 +121,23 @@
     font-size: 1.1rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+
+    .content {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      height: 90%;
+      .left {
+        height: 100%;
+      }
+      .right {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

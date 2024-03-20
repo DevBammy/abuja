@@ -55,7 +55,9 @@ const Signup = () => {
         </div>
         <div className="right">
           <h1>Welcome</h1>
-          <p>Create Become part of something bigger than yourself. </p>
+          {/* <p>
+            Create an account to become part of something bigger than yourself.{' '}
+          </p> */}
           <p>
             Sign up now and embark on an exiting adventures as we grow together
             in faith and fellowship

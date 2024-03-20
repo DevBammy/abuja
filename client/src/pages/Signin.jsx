@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import {
-  signInFailed,
-  signInStart,
-  signInSuccess,
-} from '../redux/features/userSlice';
+import { signInSuccess } from '../redux/features/userSlice';
 import toast from 'react-hot-toast';
 import Pix from '../assets/bg.jpg';
 import '../styles/auth.scss';
@@ -15,10 +11,8 @@ import '../styles/auth.scss';
 
 const Signin = () => {
   const [formData, setFormData] = useState({});
-  const { isLoading, error } = useSelector((state) => state.user);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,7 +26,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(signInStart());
+      setIsLoading(true);
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
@@ -42,15 +36,20 @@ const Signin = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailed(data.message));
+        setError(data.message);
+        setIsLoading(false);
         toast.error(data.message);
         return;
       }
       dispatch(signInSuccess(data));
+      setError(null);
+      setIsLoading(false);
       nav('/profile');
       toast.success('Welcome to your dashboard');
     } catch (error) {
-      dispatch(signInFailed(error.message));
+      // dispatch(signInFailed(error.message));
+      setError(error.message);
+      setIsLoading(false);
       toast.error(error.message);
     }
   };
