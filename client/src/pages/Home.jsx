@@ -12,7 +12,7 @@ const Home = () => {
         </div>
         <div className="right">
           <h1>Welcome</h1>
-          <p>Kindly login with your registered email</p>
+          <p>Create an account or sign in to continue</p>
           <p>
             You are adviced to complete your profile before proceeding to book
             your space for the program

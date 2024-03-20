@@ -391,7 +391,13 @@
           padding: 1rem !important;
         }
         .buttons {
+          margin-top: 0.3rem;
           flex-direction: column;
+          gap: 0.4rem;
+
+          button {
+            padding: 0.6rem;
+          }
         }
       }
     }
