@@ -11,9 +11,12 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.status(201).json('user created successfully');
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    next(errorHandler(501, 'Internal Server Error'));
+    if (error.code === 11000) {
+      return res.status(400).json({ error: 'Email address is already in use' });
+    }
+    next(error);
   }
 };
 
@@ -41,40 +44,40 @@ export const signin = async (req, res, next) => {
 };
 
 // Google singin
-export const google = async (req, res, next) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      const { password: pass, ...rest } = user._doc;
-      res
-        .cookie('token', token, {
-          httpOnly: true,
-          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        })
-        .status(200)
-        .json(rest);
-    } else {
-      const generatedPassword = Math.random().toString(36).slice(-8);
-      const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
-      const newUser = new User({
-        fullname: req.body.fullname,
-        email: req.body.email,
-        password: hashedPassword,
-        avatar: req.body.avatar,
-      });
-      newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-      const { password: pass, ...userInfo } = user._doc;
-      res
-        .cookie('token', token, {
-          httpOnly: true,
-          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        })
-        .status(200)
-        .json(userInfo);
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+// export const google = async (req, res, next) => {
+//   try {
+//     const user = await User.findOne({ email: req.body.email });
+//     if (user) {
+//       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+//       const { password: pass, ...rest } = user._doc;
+//       res
+//         .cookie('token', token, {
+//           httpOnly: true,
+//           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+//         })
+//         .status(200)
+//         .json(rest);
+//     } else {
+//       const generatedPassword = Math.random().toString(36).slice(-8);
+//       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+//       const newUser = new User({
+//         fullname: req.body.fullname,
+//         email: req.body.email,
+//         password: hashedPassword,
+//         avatar: req.body.avatar,
+//       });
+//       newUser.save();
+//       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+//       const { password: pass, ...userInfo } = user._doc;
+//       res
+//         .cookie('token', token, {
+//           httpOnly: true,
+//           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+//         })
+//         .status(200)
+//         .json(userInfo);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
