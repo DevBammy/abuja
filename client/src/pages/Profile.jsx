@@ -402,84 +402,105 @@ const Profile = () => {
 
       <div className={showReg ? 'reg show' : 'reg'}>
         <div className="regContent">
-          <form onSubmit={handleReg}>
-            <select
-              name="title"
-              id="title"
-              required
-              onChange={handleRegChange}
-              defaultValue={currentUser.title}
-            >
-              <option value="Pastor">Pastor</option>
-              <option value="Assistant Pastor">Assistance Pastor</option>
-              <option value="Student Pastor">Student Pastor</option>
-              <option value="Elder">Elder</option>
-              <option value="Deacon">Deacon</option>
-              <option value="Deaconess">Deaconess</option>
-              <option value="Brother">Brother</option>
-              <option value="Sister">Sister</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Full Name"
-              onChange={handleRegChange}
-              id="fullname"
-              required
-              className="input"
-              defaultValue={currentUser.fullname}
-            />
-            <select
-              name="gender"
-              id="gender"
-              onChange={handleRegChange}
-              defaultValue={currentUser.gender}
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              onChange={handleRegChange}
-              id="phone"
-              required
-              className="input"
-              defaultValue={currentUser.phone}
-            />
+          <form onSubmit={handleReg} className="form">
+            <div>
+              <span>Title:</span>
+              <select
+                name="title"
+                id="title"
+                required
+                onChange={handleRegChange}
+                defaultValue={currentUser.rest.title}
+              >
+                <option value="Pastor">Pastor</option>
+                <option value="Assistant Pastor">Assistance Pastor</option>
+                <option value="Student Pastor">Student Pastor</option>
+                <option value="Elder">Elder</option>
+                <option value="Deacon">Deacon</option>
+                <option value="Deaconess">Deaconess</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+              </select>
+            </div>
+            <div>
+              <span>Full Name</span>
+              <input
+                type="text"
+                placeholder="Full Name"
+                onChange={handleRegChange}
+                id="fullname"
+                required
+                className="input"
+                defaultValue={currentUser.rest.fullname}
+              />
+            </div>
+            <div>
+              <span>Gender</span>
+              <select
+                name="gender"
+                id="gender"
+                onChange={handleRegChange}
+                defaultValue={currentUser.rest.gender}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div>
+              <span>Phone Number</span>
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                onChange={handleRegChange}
+                id="phone"
+                required
+                className="input"
+                defaultValue={currentUser.rest.phone}
+              />
+            </div>
 
-            <input
-              type="text"
-              placeholder="Assembly"
-              onChange={handleRegChange}
-              id="assembly"
-              required
-              className="input"
-              defaultValue={currentUser.assembly}
-            />
-            <input
-              type="text"
-              placeholder="District"
-              onChange={handleRegChange}
-              id="district"
-              required
-              className="input"
-              defaultValue={currentUser.district}
-            />
-            <input
-              type="text"
-              placeholder="Area"
-              onChange={handleRegChange}
-              id="area"
-              required
-              className="input"
-              defaultValue={currentUser.area}
-            />
+            <div>
+              <span>Assembly</span>
+              <input
+                type="text"
+                placeholder="Assembly"
+                onChange={handleRegChange}
+                id="assembly"
+                required
+                className="input"
+                defaultValue={currentUser.rest.assembly}
+              />
+            </div>
+            <div>
+              <span>District</span>
+              <input
+                type="text"
+                placeholder="District"
+                onChange={handleRegChange}
+                id="district"
+                required
+                className="input"
+                defaultValue={currentUser.rest.district}
+              />
+            </div>
+            <div>
+              <span>Area</span>
+              <input
+                type="text"
+                placeholder="Area"
+                onChange={handleRegChange}
+                id="area"
+                required
+                className="input"
+                defaultValue={currentUser.rest.area}
+              />
+            </div>
             <input
               type="text"
               id="uid"
               required
               className="input uid"
-              defaultValue={currentUser._id}
+              defaultValue={currentUser.rest._id}
             />
 
             <div className="buttons">
