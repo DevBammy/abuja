@@ -45,9 +45,8 @@ const Signin = () => {
       setError(null);
       setIsLoading(false);
       nav('/profile');
-      toast.success('Welcome to your dashboard');
+      toast.success(`Welcome ${formData.email}`);
     } catch (error) {
-      // dispatch(signInFailed(error.message));
       setError(error.message);
       setIsLoading(false);
       toast.error(error.message);
