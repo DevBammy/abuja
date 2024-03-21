@@ -17,6 +17,18 @@
     .scroll {
       display: none;
     }
+
+    .instruct {
+      position: absolute;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+
+      p {
+        margin-top: 0.5rem;
+      }
+    }
+
     span {
       position: absolute;
       top: 50%;
@@ -321,9 +333,17 @@
       .scroll {
         position: absolute;
         top: 10%;
-        left: 10%;
+        left: 0;
         width: 50%;
         display: block;
+        font-weight: bold;
+      }
+
+      .instruct {
+        position: absolute;
+        top: 70%;
+        left: 10%;
+        transform: translate(-10%, -50%);
       }
     }
     .profileContent {
@@ -332,6 +352,7 @@
       align-items: flex-start;
       height: max-content;
       margin-bottom: 2rem;
+      margin-top: 6rem;
 
       .left {
         width: 100%;
