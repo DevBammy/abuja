@@ -14,6 +14,12 @@ const Home = () => {
           <h1>Welcome</h1>
           <p>Create an account or sign in to continue</p>
           <p>
+            To lodge complaints or make enquiries, please email:{' '}
+            <a href="mailto:tacnabujametroyouths@gmail.com">
+              tacnabujametroyouths@gmail.com
+            </a>
+          </p>
+          <p>
             You are adviced to complete your profile before proceeding to book
             your space for the program
           </p>

@@ -65,6 +65,12 @@ const Signin = () => {
         <div className="right">
           <h1>Welcome Back! </h1>
           <p>Kindly login with your registered email!</p>
+          <p>
+            To lodge complaints or make enquiries, please email:{' '}
+            <a href="mailto:tacnabujametroyouths@gmail.com">
+              tacnabujametroyouths@gmail.com
+            </a>
+          </p>
 
           <form className="form" onSubmit={handleSubmit}>
             <input

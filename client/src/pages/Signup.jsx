@@ -91,6 +91,13 @@ const Signup = () => {
             Sign up now and embark on an exiting adventures as we grow together
             in faith and fellowship
           </p>
+
+          <p>
+            To lodge complaints or make enquiries, please email:{' '}
+            <a href="mailto:tacnabujametroyouths@gmail.com">
+              tacnabujametroyouths@gmail.com
+            </a>
+          </p>
           <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
