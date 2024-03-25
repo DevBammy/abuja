@@ -13,22 +13,6 @@ export const register = async (req, res, next) => {
     avatar,
   } = req.body;
 
-  // if (
-  //   !title ||
-  //   !fullname ||
-  //   !phone ||
-  //   !assembly ||
-  //   !district ||
-  //   !area ||
-  //   !gender ||
-  //   !avatar ||
-  //   !uid
-  // ) {
-  //   next(
-  //     errorHandler(501, 'Kindly update your profile first or fill all fields')
-  //   );
-  // }
-
   const newRegistration = new Register({
     title,
     fullname,

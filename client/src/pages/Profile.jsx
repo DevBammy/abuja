@@ -140,7 +140,8 @@ const Profile = () => {
         setShowReg(false);
         nav('/');
         toast.success(
-          'Registration successful, Please do not register for the second time.'
+          'Registration successful, Please do not register for the second time.',
+          { duration: 10000 }
         );
       }
     } catch (error) {
