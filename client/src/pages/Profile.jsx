@@ -138,7 +138,7 @@ const Profile = () => {
         return;
       } else {
         setShowReg(false);
-        dispatch(logUserOut());
+        nav('/');
         toast.success(
           'Registration successful, Please do not register for the second time.'
         );
