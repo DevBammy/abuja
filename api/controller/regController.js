@@ -1,5 +1,5 @@
 import Register from '../models/regModel.js';
-
+import { errorHandler } from '../utils/errorHandler.js';
 export const register = async (req, res, next) => {
   const {
     title,
@@ -12,6 +12,22 @@ export const register = async (req, res, next) => {
     uid,
     avatar,
   } = req.body;
+
+  if (
+    !title ||
+    !fullname ||
+    !phone ||
+    !assembly ||
+    !district ||
+    !area ||
+    !gender ||
+    !avatar ||
+    !uid
+  ) {
+    next(
+      errorHandler(501, 'Kindly update your profile first or fill all fields')
+    );
+  }
 
   const newRegistration = new Register({
     title,
