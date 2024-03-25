@@ -1,9 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase';
-import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/features/userSlice';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Google from '../assets/google.png';
 import '../styles/auth.scss';

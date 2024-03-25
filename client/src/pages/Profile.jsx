@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { app } from '../firebase';
+import toast from 'react-hot-toast';
 import {
   getDownloadURL,
   getStorage,
@@ -8,9 +10,6 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { updateUserSuccess, logUserOut } from '../redux/features/userSlice';
-import { useDispatch } from 'react-redux';
-import { app } from '../firebase';
-import toast from 'react-hot-toast';
 import Flyer from '../assets/flyer.png';
 import '../styles/profile.scss';
 
@@ -121,12 +120,6 @@ const Profile = () => {
     }
   };
 
-  const signOut = () => {
-    dispatch(logUserOut());
-    nav('/');
-    toast.success('Signed out successfully');
-  };
-
   // registration logic
   const handleReg = async (e) => {
     e.preventDefault();
@@ -144,12 +137,21 @@ const Profile = () => {
         toast.success('Registration failed');
         return;
       } else {
-        toast.success('Registration successful');
         setShowReg(false);
+        dispatch(logUserOut());
+        toast.success(
+          'Registration successful, Please do not register for the second time.'
+        );
       }
     } catch (error) {
       toast.error(error.message);
     }
+  };
+
+  const signOut = () => {
+    dispatch(logUserOut());
+    nav('/');
+    toast.success('Signed out successfully');
   };
 
   return (

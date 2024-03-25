@@ -1,6 +1,5 @@
 import Flyer from '../assets/flyer.png';
 import { Link } from 'react-router-dom';
-
 import '../styles/home.scss';
 
 const Home = () => {

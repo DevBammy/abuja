@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Pix from '../assets/bg.jpg';
 import '../styles/auth.scss';
@@ -9,7 +8,6 @@ import '../styles/auth.scss';
 const Signup = () => {
   const [formData, setFormData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
   const nav = useNavigate();
 
   const handleChange = (e) => {
@@ -18,32 +16,6 @@ const Signup = () => {
       [e.target.id]: e.target.value,
     });
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setIsLoading(true);
-  //     const res = await fetch('/api/auth/signup', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-  //     const data = await res.json();
-  //     if (data.success === false) {
-  //       toast.error(data.message);
-  //       setIsLoading(false);
-  //       return;
-  //     }
-  //     setIsLoading(false);
-  //     nav('/signin');
-  //     toast.success('Registration successful, Login with your credentials');
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     toast(error.message);
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
