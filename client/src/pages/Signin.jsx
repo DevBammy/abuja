@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-const nodemailer = 'nodemailer';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { signInSuccess } from '../redux/features/userSlice';
@@ -46,42 +45,11 @@ const Signin = () => {
       setIsLoading(false);
       nav('/profile');
       toast.success(`Welcome ${formData.email}`);
-      sendEmailToUser(currentUser.rest.email);
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
       toast.error(error.message);
     }
-  };
-
-  const sendEmailToUser = (userEmail) => {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587, // Your SMTP port
-      secure: false, // Whether to use TLS or not
-      auth: {
-        user: 'tacnabujametroyouths@gmail.com', // Your email address
-        pass: 'metro##1', // Your email password
-      },
-    });
-
-    // Construct email message
-    const mailOptions = {
-      from: 'tacnabujametroyouths@gmail.com',
-      to: userEmail,
-      subject: 'Registration Confirmation',
-      text: 'Thank you for your registration. If you have not yet finalized your profile, we kindly request that you do so promptly, as your profile information will be utilized for subsequent registration processes. Additionally, if you have already registered on the portal, we advise against submitting duplicate registrations, as your previous submission has already been received. For those who have not yet registered, please be informed that online registration has now closed. We recommend visiting the accreditation stand for manual registration. Thank you for your attention to these matters.',
-      html: '<b>Thank you for your registration. If you have not yet finalized your profile, we kindly request that you do so promptly, as your profile information will be utilized for subsequent registration processes. Additionally, if you have already registered on the portal, we advise against submitting duplicate registrations, as your previous submission has already been received. For those who have not yet registered, please be informed that online registration has now closed. We recommend visiting the accreditation stand for manual registration. Thank you for your attention to these matters.</b>',
-    };
-
-    // Send the email
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending email:', error);
-      } else {
-        console.log('Email sent:', info.response);
-      }
-    });
   };
 
   return (

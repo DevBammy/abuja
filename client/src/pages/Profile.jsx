@@ -155,6 +155,41 @@ const Profile = () => {
     toast.success('Signed out successfully');
   };
 
+  // // // send email to users
+  // useEffect(() => {
+  //   sendEmailToUser(currentUser.rest.email);
+  // }, [currentUser]);
+
+  // const sendEmailToUser = (userEmail) => {
+  //   const transporter = nodemailer.createTransport({
+  //     host: 'smtp.gmail.com',
+  //     port: 587,
+  //     secure: false,
+  //     auth: {
+  //       user: 'tacnabujametroyouths@gmail.com',
+  //       pass: 'metro##1',
+  //     },
+  //   });
+
+  //   // Construct email message
+  //   const mailOptions = {
+  //     from: 'tacnabujametroyouths@gmail.com',
+  //     to: userEmail,
+  //     subject: 'Registration Confirmation',
+  //     text: 'Thank you for your registration. If you have not yet finalized your profile, we kindly request that you do so promptly, as your profile information will be utilized for subsequent registration processes. Additionally, if you have already registered on the portal, we advise against submitting duplicate registrations, as your previous submission has already been received. For those who have not yet registered, please be informed that online registration has now closed. We recommend visiting the accreditation stand for manual registration. Thank you for your attention to these matters.',
+  //     html: '<b>Thank you for your registration. If you have not yet finalized your profile, we kindly request that you do so promptly, as your profile information will be utilized for subsequent registration processes. Additionally, if you have already registered on the portal, we advise against submitting duplicate registrations, as your previous submission has already been received. For those who have not yet registered, please be informed that online registration has now closed. We recommend visiting the accreditation stand for manual registration. Thank you for your attention to these matters.</b>',
+  //   };
+
+  //   // Send the email
+  //   transporter.sendMail(mailOptions, (error, info) => {
+  //     if (error) {
+  //       console.error('Error sending email:', error);
+  //     } else {
+  //       console.log('Email sent:', info.response);
+  //     }
+  //   });
+  // };
+
   return (
     <div className="profile">
       <header>
