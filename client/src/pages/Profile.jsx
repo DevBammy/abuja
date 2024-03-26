@@ -467,7 +467,11 @@ const Profile = () => {
               >
                 Register Now
               </button> */}
-              <p>ONLINE REGISTRATION CLOSED!</p>
+              <h3>ONLINE REGISTRATION CLOSED!</h3>
+              <p>
+                You are adviced to visit the accreditation stand for manual
+                registeration
+              </p>
             </div>
           </div>
         </div>
