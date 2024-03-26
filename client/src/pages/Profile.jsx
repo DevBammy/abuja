@@ -159,7 +159,7 @@ const Profile = () => {
     <div className="profile">
       <header>
         <div className="instruct">
-          <p>
+          {/* <p>
             Please ensure your photo is under 2MB and sized at 400 x 250 pixels.
             Larger photos may have upload issues.
           </p>
@@ -169,6 +169,10 @@ const Profile = () => {
               CloudConvert
             </a>
             , a free online tool for file conversion and resizing.
+          </p> */}
+          <p>
+            Online registerations has ended. You are adviced to visit the
+            accreditation stand for manual registeration
           </p>
         </div>
 
@@ -436,8 +440,12 @@ const Profile = () => {
         </form>
         <div className="right">
           <h1>Up-coming Event:</h1>
-          <p className="scroll">
+          {/* <p className="scroll">
             Welcome! please ensure that you register only once.
+          </p> */}
+          <p className="scroll">
+            Online registerations has ended. You are adviced to visit the
+            accreditation stand for manual registeration
           </p>
           <div className="event">
             <div className="img">

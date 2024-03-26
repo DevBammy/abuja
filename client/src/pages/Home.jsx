@@ -12,7 +12,7 @@ const Home = () => {
         <div className="right">
           <h1>Welcome</h1>
           <p>Create an account or sign in to continue</p>
-          <p>
+          {/* <p>
             To lodge complaints or make enquiries, please email:{' '}
             <a href="mailto:tacnabujametroyouths@gmail.com">
               tacnabujametroyouths@gmail.com
@@ -21,6 +21,10 @@ const Home = () => {
           <p>
             You are adviced to complete your profile before proceeding to book
             your space for the program
+          </p> */}
+          <p>
+            Online registerations has ended. You are adviced to visit the
+            accreditation stand for manual registeration
           </p>
 
           <div className="btns">

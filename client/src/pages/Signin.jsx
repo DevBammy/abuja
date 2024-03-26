@@ -69,6 +69,10 @@ const Signin = () => {
               tacnabujametroyouths@gmail.com
             </a>
           </p>
+          <p>
+            Online registerations has ended. You are adviced to visit the
+            accreditation stand for manual registeration
+          </p>
 
           <form className="form" onSubmit={handleSubmit}>
             <input
