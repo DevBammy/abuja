@@ -460,13 +460,14 @@ const Profile = () => {
                 <span>Venue: </span>TACN Abuja FCT Metropolitan Area Head
                 Quarter. Plot 494, Durumi District, Abuja, FCT.
               </p>
-              <button
+              {/* <button
                 type="button"
                 className="register"
                 onClick={handleShowReg}
               >
                 Register Now
-              </button>
+              </button> */}
+              <p>ONLINE REGISTRATION CLOSED!</p>
             </div>
           </div>
         </div>
