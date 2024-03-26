@@ -467,7 +467,9 @@ const Profile = () => {
               >
                 Register Now
               </button> */}
-              <h3>ONLINE REGISTRATION CLOSED!</h3>
+              <h3 style={{ fontWeight: 'bolder' }}>
+                ONLINE REGISTRATION CLOSED!
+              </h3>
               <p>
                 You are adviced to visit the accreditation stand for manual
                 registeration
