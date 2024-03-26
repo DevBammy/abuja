@@ -71,7 +71,7 @@ const Signin = () => {
           </p>
           <p>
             Online registration has ended. You are adviced to visit the
-            accreditation stand for manual registeration
+            accreditation stand for manual registration.
           </p>
 
           <form className="form" onSubmit={handleSubmit}>
