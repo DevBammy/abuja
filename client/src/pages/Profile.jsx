@@ -171,7 +171,7 @@ const Profile = () => {
             , a free online tool for file conversion and resizing.
           </p> */}
           <p>
-            Online registerations has ended. You are adviced to visit the
+            Online registration has ended. You are adviced to visit the
             accreditation stand for manual registeration
           </p>
         </div>

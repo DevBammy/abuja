@@ -72,7 +72,7 @@ const Signup = () => {
           </p>
 
           <p>
-            Online registerations has ended. You are adviced to visit the
+            Online registration has ended. You are adviced to visit the
             accreditation stand for manual registeration
           </p>
           <form className="form" onSubmit={handleSubmit}>

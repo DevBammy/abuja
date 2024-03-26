@@ -23,7 +23,7 @@ const Home = () => {
             your space for the program
           </p> */}
           <p>
-            Online registerations has ended. You are adviced to visit the
+            Online registration has ended. You are adviced to visit the
             accreditation stand for manual registeration
           </p>
 
